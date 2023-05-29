@@ -25,7 +25,8 @@
     ],
     "paths": {
       "utils": [
-        "dist/utils"
+        "dist/utils",
+        "projects/utils/src/public-api"
       ]
     }
   },
