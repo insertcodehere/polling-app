@@ -49,9 +49,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/polling-app/src/favicon.ico",
-              "projects/polling-app/src/assets"
+              "projects/polling-app/src/assets",
+              {
+                "glob": "*.css",
+                "input": "./node_modules/@angular/material/prebuilt-themes/",
+                "output": "/themes"
+              }
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/polling-app/src/styles.scss"
             ],
             "scripts": []
