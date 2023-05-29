@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.sign-up-form {
+  padding: 2em;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+
+  .arrow-backward {
+    position: relative;
+    top: -2px;
+  }
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,37 @@
+<div class="header">
+  <label class="label">Options</label>
+
+  <button
+    class="add-option-button"
+    type="button"
+    mat-button
+    (click)="addOption()"
+  >
+    <mat-icon fontIcon="add"></mat-icon>
+    Add
+  </button>
+</div>
+
+<div class="divider">
+  <hr />
+</div>
+
+<div *ngFor="let item of itemsForm.controls; let i = index" class="control">
+  <mat-form-field class="form-field">
+    <input
+      matInput
+      [formControl]="getControl(i)"
+      placeholder="Option {{ i + 1 }}"
+    />
+  </mat-form-field>
+
+  <button
+    class="input-remove-button"
+    mat-icon-button
+    color="warn"
+    [disabled]="removeDisabled"
+    (click)="removeOption(i)"
+  >
+    <mat-icon fontIcon="delete"></mat-icon>
+  </button>
+</div>

@@ -1,0 +1,51 @@
+<form class="sign-up-form" [formGroup]="form">
+  <mat-card class="sign-up-card">
+    <mat-card-title>Sign up</mat-card-title>
+
+    <mat-card-content class="card-content">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+        <mat-hint>Must be unique</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="John Doe" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="passwordVisible ? 'text' : 'password'"
+          formControlName="password"
+        />
+        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+          <mat-icon
+            [fontIcon]="passwordVisible ? 'visibility_off' : 'visibility'"
+          ></mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-error *ngIf="error"> Username is already taken. </mat-error>
+
+      <div class="form-actions">
+        <a mat-button routerLink="/auth/login">
+          <mat-icon class="arrow-backward" fontIcon="arrow_backward"></mat-icon>
+          Sign-in
+        </a>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="align-center">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="formDisabled"
+        (click)="signUp()"
+      >
+        Sign up
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

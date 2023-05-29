@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-option-button {
+  align-self: flex-end;
+}
+
+.control {
+  display: flex;
+  gap: 1em;
+
+  .form-field {
+    flex-grow: 1;
+  }
+
+  .input-remove-button {
+    position: relative;
+    top: 2px;
+    align-self: center;
+  }
+}

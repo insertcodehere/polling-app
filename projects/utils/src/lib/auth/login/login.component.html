@@ -1,0 +1,34 @@
+<form class="login-form" [formGroup]="form" (ngSubmit)="login()">
+  <mat-card class="login-card">
+    <mat-card-title>Login</mat-card-title>
+
+    <mat-card-content class="card-content">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <mat-error *ngIf="error"> Username or password incorrect. </mat-error>
+
+      <div class="form-actions">
+        <mat-checkbox class="remember-me" checked>Remember me?</mat-checkbox>
+
+        <a mat-button routerLink="/auth/signup">
+          Sign-up
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </a>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="align-center">
+      <button mat-raised-button color="primary" [disabled]="formDisabled">
+        Login
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

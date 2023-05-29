@@ -1,0 +1,10 @@
+<button class="login-or-logout-button" mat-button (click)="authRequest()">
+  <div class="login-or-logout-button-content">
+    <ng-container *ngIf="authenticatedUser">
+      <span class="user-name">{{ authenticatedUser.name }}</span>
+      <span>|</span>
+    </ng-container>
+    <span class="auth-action">{{ isAuthenticated ? 'Logout' : 'Login' }}</span>
+    <mat-icon [fontIcon]="isAuthenticated ? 'login' : 'logout'"></mat-icon>
+  </div>
+</button>
