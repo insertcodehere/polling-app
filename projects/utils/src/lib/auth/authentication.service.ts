@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, tap } from "rxjs";
-import { environment } from "../../environments/environment";
 
-import { User } from "../user/user.model";
+import { BehaviorSubject, Observable, tap } from "rxjs";
+
+import { environment } from "../../../../polling-app/src/environments/environment";
+
+import { User } from "./user/user.model";
 
 
 

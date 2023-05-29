@@ -25,6 +25,9 @@ export * from './lib/input-list/input-list.module';
 // Material
 export * from './lib/material/material.module';
 
+// Notification
+export * from './lib/notification/notification.service';
+
 // Theme switch
 export * from './lib/theme-switch/theme-switch.component';
 export * from './lib/theme-switch/theme-switch.module';

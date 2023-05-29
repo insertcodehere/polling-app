@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ApiError } from '../../shared/error/error.model';
+import { ApiError } from '../../error/error.model';
 import { AuthenticationService } from '../authentication.service';
-import { NotificationService } from '../../shared/notification/notification.service';
+import { NotificationService } from '../../notification/notification.service';
 
 
 
