@@ -1,0 +1,44 @@
+<ng-container *ngIf="pollAsync | async as poll">
+  <div class="title">
+    <h1>Update poll</h1>
+  </div>
+
+  <form class="content" #form="ngForm" (ngSubmit)="updatePoll()">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput name="name" [value]="poll.name" disabled />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput name="description" [value]="poll.description" disabled />
+    </mat-form-field>
+
+    <mat-label class="options-label">Options</mat-label>
+    <mat-list class="options-list" role="list">
+      <mat-list-item *ngFor="let option of poll.options" role="listitem">
+        <mat-icon mat-list-icon fontIcon="arrow_right"></mat-icon>
+        {{ option.text }}
+      </mat-list-item>
+    </mat-list>
+
+    <mat-slide-toggle
+      class="opened-slide-toggle"
+      name="status"
+      [ngModel]="poll.status === 'Opened' ? true : false"
+      (ngModelChange)="updateStatus($event)">
+      Opened
+    </mat-slide-toggle>
+  </form>
+
+  <div class="actions">
+    <button mat-button (click)="backToList()">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.pristine"
+      (click)="updatePoll()">
+      Save
+    </button>
+  </div>
+</ng-container>

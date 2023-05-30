@@ -1,0 +1,42 @@
+<div class="title">
+  <h1>Create poll</h1>
+</div>
+
+<form class="content" #form="ngForm" (ngSubmit)="createPoll()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput name="name" [(ngModel)]="poll.name" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      name="description"
+      [(ngModel)]="poll.description"
+      required />
+  </mat-form-field>
+
+  <mat-slide-toggle
+    class="opened-slide-toggle"
+    name="status"
+    [ngModel]="poll.status === 'Opened' ? true : false"
+    (ngModelChange)="updateStatus($event)">
+    Opened
+  </mat-slide-toggle>
+
+  <input-list
+    class="input-list"
+    (valueChanges)="updateOptionList($event)"></input-list>
+</form>
+
+<div class="actions">
+  <button mat-button (click)="backToList()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid || (poll.options | optionsEmpty)"
+    (click)="createPoll()">
+    Save
+  </button>
+</div>
