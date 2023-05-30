@@ -15,7 +15,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const rawUser = localStorage.getItem('AuthenticatedUser');
+    const rawUser = sessionStorage.getItem('AuthenticatedUser');
     if (!rawUser) {
       return next.handle(request);
     }

@@ -33,7 +33,7 @@ export class AuthenticationService {
   authenticated = this._authenticated.asObservable();
 
   constructor(private _http: HttpClient) {
-    const storageItem = localStorage.getItem(AUTH_STORAGE_KEY);
+    const storageItem = sessionStorage.getItem(AUTH_STORAGE_KEY);
     if (storageItem) {
       const parsed = JSON.parse(storageItem);
       this._authenticatedUser = parsed;
@@ -53,14 +53,14 @@ export class AuthenticationService {
     return this._http.post<User>(`${this._apiBaseEndpoint}/login`, payload).pipe(
       tap(user => {
         this._authenticatedUser = user;
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+        sessionStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
         this._authenticated.next(true);
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem(AUTH_STORAGE_KEY);
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
     this._authenticatedUser = null;
     this._authenticated.next(false);
 
