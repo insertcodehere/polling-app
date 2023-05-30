@@ -1,0 +1,27 @@
+<mat-form-field class="form-field-search" appearance="outline">
+  <mat-label>Search</mat-label>
+  <input
+    matInput
+    placeholder="Search a poll"
+    (input)="updateSearchQuery($event)" />
+
+  <button mat-icon-button color="primary" matSuffix>
+    <mat-icon fontIcon="search"></mat-icon>
+  </button>
+</mat-form-field>
+
+<ng-container *ngIf="searchResult | async as polls">
+  <mat-nav-list *ngIf="polls.length !== 0">
+    <a
+      *ngFor="let poll of polls"
+      mat-list-item
+      [routerLink]="['../view', poll.id]">
+      <h3 matListItemTitle>{{ poll.name }}</h3>
+      <p matListItemLine>{{ poll.description }}</p>
+    </a>
+  </mat-nav-list>
+
+  <empty-list
+    *ngIf="polls.length === 0"
+    message="Sorry, no polls found with your search result."></empty-list>
+</ng-container>

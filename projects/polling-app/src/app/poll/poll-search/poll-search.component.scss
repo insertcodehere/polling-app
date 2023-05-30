@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-search {
+  width: 100%;
+}
+
+.result-empty-message {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 1em;
+}

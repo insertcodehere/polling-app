@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header-toolbar {
+  flex-shrink: 0;
+  display: flex;
+
+  .logo-slot {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    max-width: 175px;
+    filter: brightness(10);
+    max-width: 175px;
+  }
+
+  .theme-switcher {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.active-link {
+  font-weight: 600;
+}
+
+.sidenav-container {
+  .sidenav {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .sidenav-content {
+    max-height: 100%;
+
+    .scroll-view {
+      padding: 1em;
+      height: 100%;
+      overflow: auto;
+    }
+  }
+}
+
+mat-sidenav-container {
+  flex-grow: 1;
+}
+
+.footer {
+  flex-shrink: 0;
+}

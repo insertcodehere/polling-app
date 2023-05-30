@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.poll-options {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.vote-button {
+  align-self: flex-end;
+}
+
+.voting-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.option-label {
+  font-weight: 600;
+}
+
+.option-count {
+  height: 2em;
+  --mdc-linear-progress-active-indicator-height: 1em;
+  --mdc-linear-progress-track-height: 1em;
+}

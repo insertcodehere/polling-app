@@ -24,48 +24,59 @@ export class PollService {
   constructor(private _http: HttpClient) { }
 
   listen(pollId: string): Observable<Poll> {
-    // WS - https://kube-demo.redscan.global/polling-server/api/poll/:id
-    throw new Error('Not yet implemented.');
+    const socket = new WebSocketSubject<Poll>({
+      url: `${this._wsBaseEndpoint}/${pollId}`,
+      openObserver: {
+        next: (event) => {
+          console.log('Someone connected to the websocket.');
+        }
+      },
+      closingObserver: {
+        next: (event) => {
+          console.log('Someone disconnecting the websocket.');
+        }
+      },
+      closeObserver: {
+        next: (event) => {
+          console.log('Someone disconnected the websocket.');
+        }
+      }
+    });
+
+    return socket.asObservable();
   }
 
   getAll(): Observable<Poll[]> {
-    // GET - https://kube-demo.redscan.global/polling-server/api/poll
-    throw new Error('Not yet implemented.');
+    return this._http.get<Poll[]>(`${this._apiBaseEndpoint}`);
   }
 
   getMyPolls(): Observable<Poll[]> {
-    // GET - https://kube-demo.redscan.global/polling-server/api/poll/my
-    throw new Error('Not yet implemented.');
+    return this._http.get<Poll[]>(`${this._apiBaseEndpoint}/my`);
   }
 
   get(id: string): Observable<Poll> {
-    // GET - https://kube-demo.redscan.global/polling-server/api/poll/:id
-    throw new Error('Not yet implemented.');
+    return this._http.get<Poll>(`${this._apiBaseEndpoint}/${id}`);
   }
 
   search(searchText: string): Observable<Poll[]> {
-    // GET - https://kube-demo.redscan.global/polling-server/api/poll/search?query=:searchText
-    throw new Error('Not yet implemented.');
+    const encodedSearchText = encodeURIComponent(searchText);
+    return this._http.get<Poll[]>(`${this._apiBaseEndpoint}/search?query=${encodedSearchText}`);
   }
 
   create(poll: Omit<Poll, 'id'>): Observable<Poll> {
-    // POST - https://kube-demo.redscan.global/polling-server/api/poll
-    throw new Error('Not yet implemented.');
+    return this._http.post<Poll>(`${this._apiBaseEndpoint}`, poll);
   }
 
   updateStatus(id: string, changes: PollUpdateStatusDTO): Observable<Poll> {
-    // PUT - https://kube-demo.redscan.global/polling-server/api/poll/:id
-    throw new Error('Not yet implemented.');
+    return this._http.put<Poll>(`${this._apiBaseEndpoint}/${id}`, changes);
   }
 
   vote(id: string, vote: PollVoteDTO): Observable<Poll> {
-    // PUT - https://kube-demo.redscan.global/polling-server/api/poll/:id/vote
-    throw new Error('Not yet implemented.');
+    return this._http.put<Poll>(`${this._apiBaseEndpoint}/${id}/vote`, vote);
   }
 
   delete(id: string): Observable<void> {
-    // DELETE - https://kube-demo.redscan.global/polling-server/api/poll/:id
-    throw new Error('Not yet implemented.');
+    return this._http.delete<void>(`${this._apiBaseEndpoint}/${id}`);
   }
 
 }

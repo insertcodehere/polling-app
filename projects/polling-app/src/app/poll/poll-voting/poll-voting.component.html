@@ -1,0 +1,39 @@
+<ng-container *ngIf="poll">
+  <h1>{{ poll.name }}</h1>
+  <p>{{ poll.description }}</p>
+
+  <mat-radio-group class="poll-options">
+    <mat-radio-button
+      *ngFor="let option of poll.options; let i = index"
+      [value]="option.text"
+      [checked]="option.text === votedOptionValue"
+      [disabled]="poll.status === 'Closed' || alreadyVoted"
+      (change)="updateSelection($event, i)">
+      {{ option.text }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <button
+    *ngIf="!alreadyVoted"
+    class="vote-button"
+    mat-raised-button
+    color="primary"
+    [disabled]="poll.status === 'Closed' || optionIndex === -1"
+    (click)="vote()">
+    Vote
+  </button>
+
+  <div *ngIf="alreadyVoted" class="voting-progress">
+    <div
+      *ngFor="let option of poll.options; trackBy: trackByText"
+      class="option-result">
+      <div class="option-label">
+        {{ option.text }} ({{ option.votes.length }})
+      </div>
+      <mat-progress-bar
+        class="option-count"
+        mode="determinate"
+        [value]="countOptionVotes(option)"></mat-progress-bar>
+    </div>
+  </div>
+</ng-container>
